@@ -3,13 +3,20 @@ import * as S from "./styles";
 import { Button, GroupCard, Header, Highlight, ListEmpty } from "@/components";
 
 import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 
 export function Groups() {
+  const navigation = useNavigation();
   const [groups, setGrups] = useState<string[]>([
     "Turma hanna",
     "Turma evandro",
   ]);
+
+  function handleNewGroup() {
+    navigation.navigate("new");
+  }
+
   return (
     <S.Container>
       <Header />
@@ -25,7 +32,7 @@ export function Groups() {
           <ListEmpty message="Que tal cadastrar a primeira turma?" />
         )}
       />
-      <Button title="Criar nova turma" />
+      <Button title="Criar nova turma" onPress={handleNewGroup} />
     </S.Container>
   );
 }
